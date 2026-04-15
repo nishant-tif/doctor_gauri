@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "connect-src 'self' http://localhost:3002 http://localhost:3000 http://127.0.0.1:3000 http://127.0.0.1:3002 https://api.normah.ai https://api.normah.ai http://devapi.normah.ai https://devapi.normah.ai https://devapi.normah.com https://devdashboard.normah.com",
+      "connect-src 'self' http://localhost:3002 http://localhost:3000 http://127.0.0.1:3000 http://127.0.0.1:3002  https://api.drgauriagarwal.com https://devapi.drgauriagarwal.com https://dashboard.drgauriagarwal.com/",
       "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https:",
