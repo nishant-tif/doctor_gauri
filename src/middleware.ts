@@ -3,17 +3,24 @@ import type { NextRequest } from "next/server";
 
 // Security headers middleware
 export function middleware(request: NextRequest) {
-  // const token = request.cookies.get("access_token")?.value;
-  // const { pathname } = request.nextUrl;
+  const token = request.cookies.get("access_token")?.value;
+  const { pathname } = request.nextUrl;
+  const isPublicPath = pathname === "/";
+  const isStaticFile = /\.[^/]+$/.test(pathname);
 
-  // // if (!token && pathname.startsWith("/dashboard")) {
-  // //   return NextResponse.redirect(new URL("/", request.url));
-  // // }
+  let response: NextResponse;
 
-  // // if (token && pathname === "/") {
-  // //   return NextResponse.redirect(new URL("/dashboard", request.url));
-  // // }
-  const response = NextResponse.next();
+  if (isStaticFile) {
+    response = NextResponse.next();
+  } else if (!token && !isPublicPath) {
+    response = NextResponse.redirect(new URL("/", request.url));
+  } else if (token && (isPublicPath || pathname === "/dashboard")) {
+    response = NextResponse.redirect(
+      new URL("/dashboard/widgets/podcast", request.url),
+    );
+  } else {
+    response = NextResponse.next();
+  }
 
   // Security headers
   response.headers.set("X-DNS-Prefetch-Control", "on");

@@ -19,32 +19,32 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-        hostname: "api.normah.ai",
+        hostname: "api.drgauriagarwal.com",
         pathname: "/**",
       },
       {
         protocol: "http",
-        hostname: "images.normah.ai",
+        hostname: "images.drgauriagarwal.com",
         pathname: "/**",
       },
       {
         protocol: "http",
-        hostname: "devapi.normah.ai",
+        hostname: "devapi.drgauriagarwal.com",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "api.normah.ai",
+        hostname: "api.drgauriagarwal.com",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "images.normah.ai",
+        hostname: "images.drgauriagarwal.com",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "devapi.normah.ai",
+        hostname: "devapi.drgauriagarwal.com",
         pathname: "/**",
       },
     ],

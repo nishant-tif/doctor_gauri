@@ -24,9 +24,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import PersonIcon from "@mui/icons-material/Person";
 
 import WidgetsIcon from "@mui/icons-material/Widgets";
-import NumbersIcon from "@mui/icons-material/Numbers";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 
 import { fetchCurrentUser } from "@/store/slices/userSlice";
 import { useAppDispatch } from "@/store";
@@ -56,37 +54,9 @@ const Sidebar: React.FC<{
 
   const menuItems = [
     {
-      path: "/dashboard",
+      path: "/dashboard/widgets/podcast",
       label: "Dashboard",
       icon: "/assets/icons/Home.png",
-    },
-
-    // ...(user?.user_role == "SUPERADMIN"
-    //   ? [
-    //     {
-    //       path: "/policy",
-    //       label: "Policy",
-    //       icon: "/assets/icons/Normal-Battery.png",
-    //     },
-    //   ]
-    //   : []),
-
-    // { path: "/model", label: "Models", icon: "/assets/icons/Document.png" },
-
-    // ...(user?.user_role == "SUPERADMIN"
-    //   ? [
-    //     {
-    //       path: "/organizations",
-    //       label: "Organizations",
-    //       icon: "/assets/icons/Supergroup.png",
-    //     },
-    //   ]
-    //   : []),
-
-    {
-      path: "/profile",
-      label: "Profile",
-      icon: "/assets/icons/User-Accepted.png",
     },
   ];
 
@@ -119,7 +89,7 @@ const Sidebar: React.FC<{
     <>
       {/* Logo */}
       <Box sx={{ p: 3, display: "flex", justifyContent: "center" }}>
-        <Link href="/">
+        <Link href="/dashboard/widgets/podcast">
           <Image
             src="/assets/gauri-logo.webp"
             alt="Gauri"
@@ -345,6 +315,70 @@ const Sidebar: React.FC<{
             ))}
           </List>
         </Collapse>
+
+        <ListItem disablePadding sx={{ mt: 2 }}>
+          <ListItemButton
+            component={Link}
+            href="/profile"
+            sx={{
+              borderRadius: 2,
+              backgroundColor:
+                pathname === "/profile" || pathname?.startsWith("/profile/")
+                  ? "#000"
+                  : "transparent",
+              color:
+                pathname === "/profile" || pathname?.startsWith("/profile/")
+                  ? "white"
+                  : "#333",
+              transform:
+                pathname === "/profile" || pathname?.startsWith("/profile/")
+                  ? "scale(1.1)"
+                  : "scale(1)",
+              "&:hover": {
+                backgroundColor:
+                  pathname === "/profile" || pathname?.startsWith("/profile/")
+                    ? "#000"
+                    : "rgba(255,255,255,0.1)",
+                transform: "scale(1.1)",
+                transition: "transform 0.2s",
+              },
+              py: 1.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 30,
+                minHeight: 30,
+                color:
+                  pathname === "/profile" || pathname?.startsWith("/profile/")
+                    ? "white"
+                    : "#333",
+                bgcolor: "white",
+                borderRadius: "10px",
+                p: 0.5,
+                mr: 1,
+              }}
+            >
+              <Image
+                src="/assets/icons/User-Accepted.png"
+                alt="Profile"
+                width={20}
+                height={20}
+              />
+            </ListItemIcon>
+
+            <ListItemText
+              primary="Profile"
+              primaryTypographyProps={{
+                fontSize: "0.8rem",
+                fontWeight:
+                  pathname === "/profile" || pathname?.startsWith("/profile/")
+                    ? 600
+                    : 400,
+              }}
+            />
+          </ListItemButton>
+        </ListItem>
 
         {/* ================= ARTICLES ================= */}
 

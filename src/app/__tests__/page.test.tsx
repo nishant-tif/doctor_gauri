@@ -13,6 +13,7 @@ import * as router from "next/navigation";
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
     push: jest.fn(),
+    replace: jest.fn(),
   }),
 }));
 
@@ -49,9 +50,10 @@ describe("Home (Login) Page", () => {
   });
 
   it("handles form submission", async () => {
-    const mockPush = jest.fn();
+    const mockReplace = jest.fn();
     jest.spyOn(router, "useRouter").mockReturnValue({
-      push: mockPush,
+      push: jest.fn(),
+      replace: mockReplace,
     } as unknown as ReturnType<typeof router.useRouter>);
 
     render(
@@ -73,7 +75,7 @@ describe("Home (Login) Page", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith("/dashboard");
+      expect(mockReplace).toHaveBeenCalledWith("/dashboard/widgets/podcast");
     });
   });
 });
